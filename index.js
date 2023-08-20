@@ -1,25 +1,23 @@
-const argv = require('yargs').argv;
-const { createFile } = require('./files')
-
+const argv = require("yargs").argv;
+const { createFile, getFile, getInfo } = require("./files");
 
 function invokeAction({ action, fileName, content }) {
-    switch (action) {
+  switch (action) {
+    case "create":
+      createFile(fileName, content);
+      break;
 
-        case 'create':
-            createFile(fileName, content)
-            break;
+    case "get":
+      getFile();
+      break;
 
-        case '':
+    case "getInfo":
+      getInfo(fileName);
+      break;
 
-            break;
-
-        case '':
-
-            break;
-
-        default:
-            console.warn('\x1B[31m Unknown action type!');
-    }
+    default:
+      console.warn("\x1B[31m Unknown action type!");
+  }
 }
 
 invokeAction(argv);
